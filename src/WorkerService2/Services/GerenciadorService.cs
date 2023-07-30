@@ -16,7 +16,7 @@ namespace WorkerService2.Services
         }
         public void Executar()
         {
-            int qtdTasks = 8;
+            int qtdTasks = 6;
             Task[] tasks = new Task[qtdTasks];
 
             for (int i = 0; i < qtdTasks; i++)

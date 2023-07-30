@@ -8,47 +8,46 @@ namespace WorkerService2.Models
 {
     internal class Robo0
     {
-        private static int _numerador;
+
         public int FazAlgumaCoisa(Gerenciador g)
-        {            
-            if (_numerador < 20)
-            {
-                g.Produto.Id = Numerador();
-                Console.WriteLine($"Pedido Id: {g.Produto.Id}");
-                g.Produto.ExecutaCodigo();                
-                Console.WriteLine($"Pedido Cod: {g.Produto.Codigo}");
-                return g.Produto.Id;
-            }
-            return 0;
-        }
-        private static int Numerador()
         {
-            return ++_numerador;
+            Console.WriteLine($"Pedido Id: {g.Produto.Id}");
+            g.Produto.ExecutaCodigo();
+            Console.WriteLine($"Pedido Cod: {g.Produto.Codigo}");
+            return g.Produto.Id;
         }
+
     }
     internal class Robo1
     {
         public void FazAlgumaCoisa(Gerenciador g)
         {
-            Console.WriteLine($"Robo 1 Executou..{DateTimeOffset.Now}");
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(100);
+            string msg = $"Robo 1 Executou..{DateTimeOffset.Now}";
+            Console.WriteLine(msg);
+            g.Produto.Robo1 = msg;
+
         }
     }
     internal class Robo2
     {
         public void FazAlgumaCoisa(Gerenciador g)
         {
-            Console.WriteLine($"Robo 2 Executou..{DateTimeOffset.Now}");
-            System.Threading.Thread.Sleep(1000);
+            string msg = $"Robo 2 Executou..{DateTimeOffset.Now}";
+            Console.WriteLine(msg);
+            g.Produto.Robo2 = msg;
         }
     }
     internal class Robo3
     {
         public void FazAlgumaCoisa(Gerenciador g)
         {
-            Console.WriteLine($"Robo 3 Executou..{DateTimeOffset.Now}");            
-            System.Threading.Thread.Sleep(1000);
-
+            System.Threading.Thread.Sleep(100);
+            string msg = $"Robo 3 Executou..{DateTimeOffset.Now}";
+            Console.WriteLine(msg);
+            g.Produto.Robo3 = msg;
+            g.Produto.Status = StatusProduto.EmAnalise;
+            g.Repository.Atualizar(g.Produto);            
             g.ExecutarTarefas();
         }
     }
